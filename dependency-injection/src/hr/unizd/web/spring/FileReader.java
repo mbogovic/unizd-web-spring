@@ -7,14 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class FileReader {
+public class FileReader implements Reader {
 
-    private final String FILE_NAME = "C:\\Dev\\unizd\\dependency-injection\\src\\test.txt";
+    private final String DEFAULT_FILE_NAME = "C:\\Dev\\unizd\\dependency-injection\\src\\test.txt";
 
     private Path filePath;
 
-    public FileReader() {
-        filePath = Paths.get(FILE_NAME);
+    public FileReader(String fileName) {
+        filePath = Paths.get(fileName.isBlank() ? DEFAULT_FILE_NAME : fileName);
     }
 
     public String read() {

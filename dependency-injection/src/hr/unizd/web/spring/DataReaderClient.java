@@ -1,14 +1,14 @@
 package hr.unizd.web.spring;
 
 public class DataReaderClient {
-    private FileReader fileReader;
+    private Reader reader;
 
-    public DataReaderClient(FileReader fileReader) {
-        this.fileReader = fileReader;
+    public DataReaderClient(Reader reader) {
+        this.reader = reader;
     }
 
     public String fetchData() {
-        return fileReader.read();
+        return reader.read();
     }
 
 
