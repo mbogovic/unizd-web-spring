@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="fileReader" class="hr.unizd.web.spring.FileReader">
+    <bean id="fileReader" class="hr.unizd.web.spring.FileReader" primary="true">
         <constructor-arg name="fileName" value=""/>
     </bean>
 
@@ -16,24 +16,10 @@
         </property>
     </bean>
 
-    <bean id="fileDataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
-        <property name="sourceOfData" value="datoteka" />
-        <constructor-arg name="reader" ref="fileReader"/>
+    <bean id="fileDataReaderClient" class="hr.unizd.web.spring.DataReaderClient" autowire="constructor">
+        <property name="sourceOfData" value="datoteka"/>
     </bean>
 
-    <bean id="fileDataReaderClient2" class="hr.unizd.web.spring.DataReaderClient">
-        <property name="sourceOfData" value="datoteka" />
-        <constructor-arg name="reader" ref="fileReader"/>
-    </bean>
-
-    <bean id="memoryDataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
-        <property name="sourceOfData" value="memory" />
-        <constructor-arg name="reader" ref="memoryReader"/>
-    </bean>
-
-    <bean id="memoryDataReaderClient2" class="hr.unizd.web.spring.DataReaderClient">
-        <property name="sourceOfData" value="memory" />
-        <constructor-arg name="reader" ref="memoryReader"/>
-    </bean>
+    <bean id="sourceAnalyzer" class="hr.unizd.web.spring.SourceAnalyzer" autowire="byType" />
 
 </beans>
