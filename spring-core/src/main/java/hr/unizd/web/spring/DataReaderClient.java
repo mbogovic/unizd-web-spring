@@ -1,6 +1,8 @@
 package hr.unizd.web.spring;
 
 public class DataReaderClient {
+
+    private String sourceOfData;
     private Reader reader;
 
     public DataReaderClient(Reader reader) {
@@ -11,5 +13,11 @@ public class DataReaderClient {
         return reader.read();
     }
 
+    public String getSourceOfData() {
+        return sourceOfData;
+    }
 
+    public void setSourceOfData(String sourceOfData) {
+        this.sourceOfData = sourceOfData;
+    }
 }

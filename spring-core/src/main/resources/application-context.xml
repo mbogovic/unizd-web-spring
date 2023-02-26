@@ -8,9 +8,16 @@
     </bean>
 
     <bean id="memoryReader" class="hr.unizd.web.spring.MemoryReader">
+        <property name="memoryDataList">
+            <list>
+                <value>Ovo je iz memorije - xml 1</value>
+                <value>Ovo je iz memorije - xml 2</value>
+            </list>
+        </property>
     </bean>
 
     <bean id="dataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
+        <property name="sourceOfData" value="datoteka" />
         <constructor-arg name="reader" ref="fileReader"/>
     </bean>
 

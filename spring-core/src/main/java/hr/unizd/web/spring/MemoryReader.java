@@ -3,10 +3,13 @@ package hr.unizd.web.spring;
 import java.util.List;
 
 public class MemoryReader implements Reader {
-
-    private List<String> memoryData = List.of("Ovo je iz memorije.");
+    private List<String> memoryDataList;
 
     public String read() {
-        return memoryData.toString();
+        return memoryDataList.toString();
+    }
+
+    public void setMemoryDataList(List<String> memoryDataList) {
+        this.memoryDataList = memoryDataList;
     }
 }
