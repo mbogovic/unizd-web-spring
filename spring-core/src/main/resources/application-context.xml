@@ -7,7 +7,7 @@
         <constructor-arg name="fileName" value=""/>
     </bean>
 
-    <bean id="memoryReader" class="hr.unizd.web.spring.MemoryReader">
+    <bean id="memoryReader" class="hr.unizd.web.spring.MemoryReader" scope="prototype">
         <property name="memoryDataList">
             <list>
                 <value>Ovo je iz memorije - xml 1</value>
@@ -16,9 +16,24 @@
         </property>
     </bean>
 
-    <bean id="dataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
+    <bean id="fileDataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
         <property name="sourceOfData" value="datoteka" />
         <constructor-arg name="reader" ref="fileReader"/>
+    </bean>
+
+    <bean id="fileDataReaderClient2" class="hr.unizd.web.spring.DataReaderClient">
+        <property name="sourceOfData" value="datoteka" />
+        <constructor-arg name="reader" ref="fileReader"/>
+    </bean>
+
+    <bean id="memoryDataReaderClient" class="hr.unizd.web.spring.DataReaderClient">
+        <property name="sourceOfData" value="memory" />
+        <constructor-arg name="reader" ref="memoryReader"/>
+    </bean>
+
+    <bean id="memoryDataReaderClient2" class="hr.unizd.web.spring.DataReaderClient">
+        <property name="sourceOfData" value="memory" />
+        <constructor-arg name="reader" ref="memoryReader"/>
     </bean>
 
 </beans>
