@@ -9,12 +9,16 @@ import java.util.List;
 @Scope("prototype")
 public class MemoryReader implements Reader {
     private List<String> memoryDataList = List.of("Ovo je iz memorije - java 1", "Ovo je iz memorije - java 2");
+    private final String SOURCE_OF_DATA = "Memorija";
 
+    @Override
     public String read() {
         return memoryDataList.toString();
     }
 
-    public void setMemoryDataList(List<String> memoryDataList) {
-        this.memoryDataList = memoryDataList;
+    @Override
+    public String getSourceOfData() {
+        return SOURCE_OF_DATA;
     }
+
 }

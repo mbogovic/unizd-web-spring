@@ -14,15 +14,15 @@ import java.util.List;
 @Component
 @Primary
 public class FileReader implements Reader {
-
-    private final String DEFAULT_FILE_NAME = "C:\\Dev\\unizd\\dependency-injection\\src\\test.txt";
+    private final String SOURCE_OF_DATA = "Datoteka";
 
     private Path filePath;
 
-    public FileReader(@Value("") String fileName) {
-        filePath = Paths.get(fileName.isBlank() ? DEFAULT_FILE_NAME : fileName);
+    public FileReader(@Value("${file.reader.file.path}") String fileName) {
+        filePath = Paths.get(fileName);
     }
 
+    @Override
     public String read() {
         String content = "";
         try {
@@ -35,4 +35,8 @@ public class FileReader implements Reader {
         return content;
     }
 
+    @Override
+    public String getSourceOfData() {
+        return SOURCE_OF_DATA;
+    }
 }
