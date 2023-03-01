@@ -4,7 +4,9 @@ import hr.unizd.web.springboot.heroes.model.Superhero;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +35,23 @@ public class SuperheroController {
         model.addAttribute("heroDetails", superhero);
 
         return "heroTemplate";
+    }
+
+    @GetMapping("heroes/create")
+    public String fetchCreateForm(Model model) {
+        model.addAttribute("hero", new Superhero());
+        return "heroCreateTemplate";
+    }
+
+    @PostMapping("/heroes")
+    public String create(@ModelAttribute Superhero hero, Model model) {
+        if (hero.getId() == null) {
+            hero.setId((long) superheroList.size() + 1);
+        }
+
+        superheroList.add(hero);
+        model.addAttribute("heroList", superheroList);
+
+        return "heroListTemplate";
     }
 }
