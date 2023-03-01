@@ -1,7 +1,7 @@
 package hr.unizd.web.springboot.heroes.model;
 
 public class Superhero {
-    private Long id;
+    private Integer id;
     private String name;
     private String superpower;
     private String iconLocation;
@@ -9,18 +9,18 @@ public class Superhero {
     public Superhero() {
     }
 
-    public Superhero(Long id, String name, String superpower, String iconLocation) {
+    public Superhero(Integer id, String name, String superpower, String iconLocation) {
         this.id = id;
         this.name = name;
         this.superpower = superpower;
         this.iconLocation = iconLocation;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
