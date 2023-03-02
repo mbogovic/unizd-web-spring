@@ -48,6 +48,6 @@ public class SuperheroController {
         List<Superhero> superheroList = superheroService.create(hero);
         model.addAttribute("heroList", superheroList);
 
-        return "heroListTemplate";
+        return "redirect:/heroes";
     }
 }
