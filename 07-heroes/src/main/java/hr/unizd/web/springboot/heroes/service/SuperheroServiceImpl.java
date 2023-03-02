@@ -1,5 +1,7 @@
 package hr.unizd.web.springboot.heroes.service;
 
+import hr.unizd.web.springboot.heroes.dto.SuperheroCreateForm;
+import hr.unizd.web.springboot.heroes.dto.SuperheroEditForm;
 import hr.unizd.web.springboot.heroes.exception.EntityNotFoundException;
 import hr.unizd.web.springboot.heroes.model.Superhero;
 import hr.unizd.web.springboot.heroes.repository.SuperheroRepository;
@@ -32,23 +34,25 @@ public class SuperheroServiceImpl implements SuperheroService {
         return superheroOptional.get();
     }
 
-    public List<Superhero> create(Superhero superhero) {
+    public List<Superhero> create(SuperheroCreateForm superheroCreateForm) {
         List<Superhero> superheroList = superheroRepository.fetchAll();
-        if (superhero.getId() == null) {
-            superhero.setId(superheroList.size() + 1);
-        }
+
+        Superhero superhero = new Superhero();
+        superhero.setId(superheroList.size() + 1);
+        superhero.setName(superheroCreateForm.getName());
+        superhero.setSuperpower(superheroCreateForm.getSuperpower());
 
         superheroRepository.create(superhero);
 
         return superheroRepository.fetchAll();
     }
 
-    public List<Superhero> edit(Superhero superhero) {
-        Superhero existingSuperHero = fetchDetails(superhero.getId());
-        existingSuperHero.setName(superhero.getName());
-        existingSuperHero.setSuperpower(superhero.getSuperpower());
+    public List<Superhero> edit(SuperheroEditForm superheroEditForm) {
+        Superhero superhero = fetchDetails(superheroEditForm.getId());
+        superhero.setName(superheroEditForm.getName());
+        superhero.setSuperpower(superheroEditForm.getSuperpower());
 
-        superheroRepository.edit(existingSuperHero);
+        superheroRepository.edit(superhero);
 
         return superheroRepository.fetchAll();
     }

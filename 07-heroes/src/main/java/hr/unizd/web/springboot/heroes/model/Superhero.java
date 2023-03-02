@@ -1,8 +1,11 @@
 package hr.unizd.web.springboot.heroes.model;
 
 public class Superhero {
+
     private Integer id;
+
     private String name;
+
     private String superpower;
     private String iconLocation;
 

@@ -1,10 +1,14 @@
 package hr.unizd.web.springboot.heroes.controller;
 
+import hr.unizd.web.springboot.heroes.dto.SuperheroCreateForm;
+import hr.unizd.web.springboot.heroes.dto.SuperheroEditForm;
 import hr.unizd.web.springboot.heroes.model.Superhero;
 import hr.unizd.web.springboot.heroes.service.SuperheroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +46,11 @@ public class SuperheroController {
     }
 
     @PostMapping("/heroes")
-    public String create(@ModelAttribute Superhero hero) {
+    public String create(@ModelAttribute(name = "hero") @Valid SuperheroCreateForm hero, BindingResult validationResult) {
+        if (validationResult.hasErrors()) {
+            return "heroCreateTemplate";
+        }
+
         superheroService.create(hero);
 
         return "redirect:/heroes";
@@ -57,7 +65,11 @@ public class SuperheroController {
     }
 
     @PostMapping("/heroes/edit")
-    public String edit(@ModelAttribute Superhero hero) {
+    public String edit(@ModelAttribute(name="hero") @Valid SuperheroEditForm hero, BindingResult validationResult) {
+        if (validationResult.hasErrors()) {
+            return "heroEditTemplate";
+        }
+
         superheroService.edit(hero);
 
         return "redirect:/heroes";
