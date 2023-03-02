@@ -32,8 +32,9 @@
           <a th:href="'/heroes/edit/' + ${heroDetails.getId()}" class="btn btn-secondary">
             <i class="bi-pen"></i>
           </a>
-
-          <button type="button" class="btn btn-danger"><i class="bi-trash"></i></button>
+          <a th:href="'/heroes/delete/' + ${heroDetails.getId()}" class="btn btn-danger">
+            <i class="bi-trash"></i>
+          </a>
         </td>
       </tr>
       </tbody>

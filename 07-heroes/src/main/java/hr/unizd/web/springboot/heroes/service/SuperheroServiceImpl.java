@@ -53,4 +53,8 @@ public class SuperheroServiceImpl implements SuperheroService {
         return superheroRepository.fetchAll();
     }
 
+    public List<Superhero> delete(Integer id) {
+        superheroRepository.delete(id);
+        return superheroRepository.fetchAll();
+    }
 }

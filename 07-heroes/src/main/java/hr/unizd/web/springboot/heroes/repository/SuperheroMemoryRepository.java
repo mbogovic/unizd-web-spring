@@ -34,16 +34,25 @@ public class SuperheroMemoryRepository implements SuperheroRepository {
     }
 
     public void edit(Superhero newSuperhero) {
-        int index = 0;
+        int listIndex = fetchObjectListIndex(newSuperhero.getId());
+        superheroList.set(listIndex, newSuperhero);
+    }
+
+    public void delete(Integer id) {
+        int listIndex = fetchObjectListIndex(id);
+        superheroList.remove(listIndex);
+    }
+
+    private Integer fetchObjectListIndex(Integer id) {
+        int index = -1;
 
         for (int i = 0; i < superheroList.size(); i++) {
-            if (superheroList.get(i).getId().equals(newSuperhero.getId())) {
+            if (superheroList.get(i).getId().equals(id)) {
                 index = i;
                 break;
             }
         }
 
-        superheroList.set(index, newSuperhero);
+        return index;
     }
-
 }

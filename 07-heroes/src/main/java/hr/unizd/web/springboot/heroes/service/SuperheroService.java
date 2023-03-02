@@ -13,4 +13,6 @@ public interface SuperheroService {
     List<Superhero> create(Superhero superhero);
 
     List<Superhero> edit(Superhero superhero);
+
+    List<Superhero> delete(Integer id);
 }

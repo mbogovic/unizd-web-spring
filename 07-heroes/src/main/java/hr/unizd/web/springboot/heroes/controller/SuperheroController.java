@@ -42,7 +42,7 @@ public class SuperheroController {
     }
 
     @PostMapping("/heroes")
-    public String create(@ModelAttribute Superhero hero, Model model) {
+    public String create(@ModelAttribute Superhero hero) {
         superheroService.create(hero);
 
         return "redirect:/heroes";
@@ -57,8 +57,15 @@ public class SuperheroController {
     }
 
     @PostMapping("/heroes/edit")
-    public String edit(@ModelAttribute Superhero hero, Model model) {
+    public String edit(@ModelAttribute Superhero hero) {
         superheroService.edit(hero);
+
+        return "redirect:/heroes";
+    }
+
+    @GetMapping("/heroes/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        superheroService.delete(id);
 
         return "redirect:/heroes";
     }
