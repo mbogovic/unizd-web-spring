@@ -29,7 +29,10 @@
         <td class="align-middle"><span th:text="${heroDetails.getName()}"></span></td>
         <td class="align-middle"><span th:text="${heroDetails.getSuperpower()}"></span></td>
         <td class="align-middle">
-          <button type="button" class="btn btn-secondary"><i class="bi-pen"></i></button>
+          <a th:href="'/heroes/edit/' + ${heroDetails.getId()}" class="btn btn-secondary">
+            <i class="bi-pen"></i>
+          </a>
+
           <button type="button" class="btn btn-danger"><i class="bi-trash"></i></button>
         </td>
       </tr>

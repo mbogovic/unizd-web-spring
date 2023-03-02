@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 @Controller
 public class SuperheroController {
 
@@ -45,8 +43,22 @@ public class SuperheroController {
 
     @PostMapping("/heroes")
     public String create(@ModelAttribute Superhero hero, Model model) {
-        List<Superhero> superheroList = superheroService.create(hero);
-        model.addAttribute("heroList", superheroList);
+        superheroService.create(hero);
+
+        return "redirect:/heroes";
+    }
+
+    @GetMapping("heroes/edit/{id}")
+    public String fetchEditForm(Model model, @PathVariable Integer id) {
+        Superhero hero = superheroService.fetchDetails(id);
+        model.addAttribute("hero", hero);
+
+        return "heroEditTemplate";
+    }
+
+    @PostMapping("/heroes/edit")
+    public String edit(@ModelAttribute Superhero hero, Model model) {
+        superheroService.edit(hero);
 
         return "redirect:/heroes";
     }

@@ -12,4 +12,6 @@ public interface SuperheroRepository {
 
     boolean create(Superhero superhero);
 
+    void edit(Superhero superhero);
+
 }

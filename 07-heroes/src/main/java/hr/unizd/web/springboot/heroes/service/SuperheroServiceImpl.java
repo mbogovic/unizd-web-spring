@@ -42,4 +42,15 @@ public class SuperheroServiceImpl implements SuperheroService {
 
         return superheroRepository.fetchAll();
     }
+
+    public List<Superhero> edit(Superhero superhero) {
+        Superhero existingSuperHero = fetchDetails(superhero.getId());
+        existingSuperHero.setName(superhero.getName());
+        existingSuperHero.setSuperpower(superhero.getSuperpower());
+
+        superheroRepository.edit(existingSuperHero);
+
+        return superheroRepository.fetchAll();
+    }
+
 }

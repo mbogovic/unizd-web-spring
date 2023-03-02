@@ -11,4 +11,6 @@ public interface SuperheroService {
     Superhero fetchDetails(Integer id);
 
     List<Superhero> create(Superhero superhero);
+
+    List<Superhero> edit(Superhero superhero);
 }
